@@ -33,6 +33,7 @@ export default function SignRecognizer() {
   const [flipped, setFlipped] = useState([]);
   const [matched, setMatched] = useState([]);
   const [memoryMoves, setMemoryMoves] = useState(0);
+  const [memoryFeedback, setMemoryFeedback] = useState("Találd meg az egyforma táblákat!");
 
   // Csak az óvodásoknak fontos táblák a kvízhez és tanuláshoz
   const learnSigns = getOvodaSigns();
@@ -48,15 +49,19 @@ export default function SignRecognizer() {
   }, [mode]);
 
   const initMemory = () => {
-    const subset = [...learnSigns].sort(() => Math.random() - 0.5).slice(0, 4);
-    const cards = [
-      ...subset.map(s => ({ id: s.id + "-img", signId: s.id, sign: s, type: "image" })),
-      ...subset.map(s => ({ id: s.id + "-n", signId: s.id, display: s.name, type: "name" }))
-    ].sort(() => Math.random() - 0.5);
+    const pairCount = typeof window !== "undefined" && window.innerWidth >= 640 ? 6 : 4;
+    const subset = [...learnSigns].sort(() => Math.random() - 0.5).slice(0, pairCount);
+    const cards = subset
+      .flatMap((sign) => [
+        { id: `${sign.id}-a`, signId: sign.id, sign },
+        { id: `${sign.id}-b`, signId: sign.id, sign }
+      ])
+      .sort(() => Math.random() - 0.5);
     setMemoryCards(cards);
     setFlipped([]);
     setMatched([]);
     setMemoryMoves(0);
+    setMemoryFeedback("Találd meg az egyforma táblákat!");
   };
 
   const handleMemoryFlip = (idx) => {
@@ -69,13 +74,18 @@ export default function SignRecognizer() {
       const [a, b] = newFlipped;
       if (memoryCards[a].signId === memoryCards[b].signId) {
         setMatched(prev => [...prev, memoryCards[a].signId]);
+        setMemoryFeedback("Ügyes vagy! Megtaláltad a párját!");
         addStars(1);
         setFlipped([]);
         if (matched.length + 1 >= memoryCards.length / 2) {
           addBadge("tabla-figyelo");
         }
       } else {
-        setTimeout(() => setFlipped([]), 800);
+        setMemoryFeedback("Próbáld újra, menni fog!");
+        setTimeout(() => {
+          setFlipped([]);
+          setMemoryFeedback("Találd meg az egyforma táblákat!");
+        }, 900);
       }
     }
   };
@@ -286,7 +296,6 @@ export default function SignRecognizer() {
 
   // ── MEMORY MODE ───────────────────────────────────────────────────────
   if (mode === "memory") {
-    if (memoryCards.length === 0) initMemory();
     const allMatched = matched.length >= memoryCards.length / 2 && memoryCards.length > 0;
 
     return (
@@ -298,6 +307,9 @@ export default function SignRecognizer() {
             <span className="font-bold text-sm">Lépések: {memoryMoves}</span>
             <span className="font-bold text-sm">Párok: {matched.length}/{memoryCards.length / 2}</span>
           </div>
+          <p className="mb-4 rounded-2xl bg-primary/10 px-4 py-3 text-center text-base font-black text-primary">
+            {memoryFeedback}
+          </p>
           {allMatched ? (
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="bg-white rounded-3xl p-8 shadow-xl text-center">
               <span className="text-7xl">🧠</span>
@@ -306,14 +318,14 @@ export default function SignRecognizer() {
               <Button onClick={() => { initMemory(); }} className="mt-4 h-12 rounded-xl font-bold">Újra! 🔄</Button>
             </motion.div>
           ) : (
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {memoryCards.map((card, idx) => {
                 const isFlipped = flipped.includes(idx) || matched.includes(card.signId);
                 return (
                   <motion.button
                     key={card.id}
                     onClick={() => handleMemoryFlip(idx)}
-                    className={`aspect-square rounded-2xl flex items-center justify-center text-center p-1 shadow-md transition-all ${
+                    className={`min-h-44 rounded-2xl flex items-center justify-center text-center p-2 shadow-md transition-all ${
                       isFlipped
                         ? (matched.includes(card.signId) ? "bg-green-100 border-2 border-green-400" : "bg-white border-2 border-primary")
                         : "bg-primary/20 hover:bg-primary/30"
@@ -321,11 +333,10 @@ export default function SignRecognizer() {
                     whileTap={{ scale: 0.9 }}
                   >
                     {isFlipped ? (
-                      card.type === "image" ? (
-                        <KreszSignPlaceholder sign={card.sign} size="small" showName={false} />
-                      ) : (
-                        <span className="text-xs font-bold leading-tight px-1">{card.display}</span>
-                      )
+                      <div className="flex flex-col items-center gap-2">
+                        <KreszSignPlaceholder sign={card.sign} size="medium" showName={false} />
+                        <span className="text-xs font-black leading-tight px-1">{card.sign.name}</span>
+                      </div>
                     ) : (
                       <span className="text-2xl">❓</span>
                     )}
@@ -361,6 +372,7 @@ export default function SignRecognizer() {
                 setQuizIndex(0);
                 setQuizScore(0);
                 setShowAdult(false);
+                if (m.id === "memory") initMemory();
               }}
               className="bg-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-all border-2 border-transparent hover:border-primary/20 active:scale-95 text-left flex items-center gap-4"
             >

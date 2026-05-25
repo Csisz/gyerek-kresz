@@ -1,201 +1,221 @@
-// Tanulási kártyák – 5 éves óvodásoknak
-// Magyar KRESZ-alapú, versenyfelkészítő leckék
+// Tanulási kártyák - 5 éves óvodásoknak
+// Magyar KRESZ-alapú, játékos közlekedésbiztonsági leckék.
 
 export const lessons = [
-  // ─── JELZŐLÁMPÁK ────────────────────────────────────────────────────
   {
-    id: "piros-lampa",
-    title: "Piros lámpa",
-    text: "Ha piros a lámpa, ÁLLJ MEG! Nem szabad elindulni.",
-    emoji: "🔴",
-    category: "jelzolampak",
-    speech: "Ha piros a lámpa, meg kell állni! Nem szabad elindulni, várni kell, amíg zöld nem lesz."
-  },
-  {
-    id: "sarga-lampa",
-    title: "Sárga lámpa",
-    text: "Ha sárga a lámpa, KÉSZÜLJ! Mindjárt vált.",
-    emoji: "🟡",
-    category: "jelzolampak",
-    speech: "Ha sárga a lámpa, felkészülünk! Mindjárt változik a lámpa színe. Sem indulni, sem futni nem kell!"
-  },
-  {
-    id: "zold-lampa",
-    title: "Zöld lámpa",
-    text: "Ha zöld a lámpa, MEHETSZ – de azért nézz körül!",
-    emoji: "🟢",
-    category: "jelzolampak",
-    speech: "Ha zöld a lámpa, átmehetsz az úton! De azért nézz körül is, mert autó jöhet."
-  },
-  {
-    id: "lampa-sorrend",
-    title: "A lámpa sorrendje",
-    text: "Piros → sárga → zöld → sárga → piros. Ez ismétlődik!",
+    id: "autos-jelzolampa",
+    title: "Autós jelzőlámpa",
+    text: "Pirosnál állunk. Piros-sárgánál még várunk. Zöldnél mehetünk, ha biztonságos.",
     emoji: "🚦",
     category: "jelzolampak",
-    speech: "A jelzőlámpa sorrendje: piros, aztán sárga, aztán zöld, aztán sárga, és vissza piros. Ez mindig így ismétlődik!"
+    trafficLightType: "car",
+    sequence: [
+      { id: "red", label: "Piros", lights: ["red"], text: "Meg kell állni." },
+      { id: "red-yellow", label: "Piros + sárga", lights: ["red", "yellow"], text: "Még várunk." },
+      { id: "green", label: "Zöld", lights: ["green"], text: "Mehetünk, ha biztonságos." },
+      { id: "yellow", label: "Sárga", lights: ["yellow"], text: "Megállunk, ha tudunk." },
+      { id: "red-again", label: "Piros", lights: ["red"], text: "Újra állunk." }
+    ],
+    speech:
+      "Az autós jelzőlámpánál pirosnál állunk. Piros-sárgánál még várunk. Zöldnél mehetünk, ha biztonságos. Sárgánál megállunk, ha tudunk. Pirosnál újra állunk.",
+    adultExplanation:
+      "A gépjárműforgalmi jelzőlámpa sorrendje: piros, piros-sárga, zöld, sárga, piros. A piros-sárga jelzés felkészülést jelent, de még nem indulást; a sárga megállási kötelezettséget jelez, ha ez biztonságosan megtehető."
+  },
+  {
+    id: "gyalogos-jelzolampa",
+    title: "Gyalogos jelzőlámpa",
+    text: "Piros emberkénél várunk. Zöldnél átmehetünk, ha körülnéztünk. Villogó zöldnél már ne induljunk el.",
+    emoji: "🚦",
+    category: "jelzolampak",
+    trafficLightType: "pedestrian",
+    sequence: [
+      { id: "ped-red", label: "Piros emberke", state: "red", text: "Várunk." },
+      { id: "ped-green", label: "Zöld emberke", state: "green", text: "Átmehetünk, ha körülnéztünk." },
+      { id: "ped-flashing", label: "Villogó zöld", state: "flashing-green", text: "Már ne induljunk el." },
+      { id: "ped-red-again", label: "Piros emberke", state: "red", text: "Újra várunk." }
+    ],
+    speech:
+      "A gyalogos jelzőlámpánál piros emberkénél várunk. Zöld emberkénél átmehetünk, ha körülnéztünk. Villogó zöldnél már ne induljunk el. Ha már a zebrán vagyunk, óvatosan befejezzük az átkelést.",
+    adultExplanation:
+      "A gyalogos piros jelzésnél nem szabad az úttestre lépni. Zöldnél is csak körültekintés után indulunk el. Villogó zöldnél már nem kezdünk átkelést; aki már az úttesten van, óvatosan befejezi az átkelést."
   },
 
-  // ─── GYALOGOS KÖZLEKEDÉS ─────────────────────────────────────────────
   {
     id: "zebra",
-    title: "Zebra – gyalogátkelő",
-    text: "Az úton CSAK a zebrán szabad átkelni! Máshol tilos!",
+    title: "Zebra - gyalogátkelő",
+    text: "Az úton csak a zebrán szabad átkelni, és ott is körülnézünk.",
     emoji: "🦓",
     category: "gyalogos",
-    speech: "Az úton csak a zebrán, vagyis a gyalogos átkelőhelyen szabad átkelni! Máshol nagyon veszélyes."
+    speech:
+      "Az úton csak a zebrán, vagyis a gyalogos átkelőhelyen szabad átkelni. Előtte mindig megállunk és körülnézünk."
   },
   {
     id: "korulnezes",
     title: "Körülnézés a zebrán",
-    text: "Átkelés előtt: BALRA – JOBBRA – ÚJRA BALRA nézz!",
+    text: "Átkelés előtt: balra, jobbra, újra balra nézz!",
     emoji: "👀",
     category: "gyalogos",
-    speech: "Mielőtt átmész az úton, mindig nézz balra, aztán jobbra, majd újra balra! Így látod, ha jön egy autó."
+    speech:
+      "Mielőtt átmész az úton, mindig nézz balra, aztán jobbra, majd újra balra. Így látod, ha jön egy autó."
   },
   {
     id: "jarda",
     title: "A járda",
-    text: "Gyalogosan MINDIG a járdán közlekedj! Az úttest az autóké.",
+    text: "Gyalogosan mindig a járdán közlekedj. Az úttest az autóké.",
     emoji: "🚶",
     category: "gyalogos",
-    speech: "Gyalogosan mindig a járdán kell közlekedni, soha nem az úttesten! Az úttest az autóké."
+    speech:
+      "Gyalogosan mindig a járdán kell közlekedni, soha nem az úttesten. Az úttest az autóké."
   },
   {
     id: "uttest-veszelyes",
-    title: "Az úttest veszélyes!",
-    text: "Az úttest az autóké! Oda NEM szabad kimenni, csak a zebrán.",
+    title: "Az úttest veszélyes",
+    text: "Az úttest az autóké. Oda csak átkeléskor, felnőttel és figyelmesen lépünk.",
     emoji: "🚗",
     category: "gyalogos",
-    speech: "Az úttest az autóké! Oda nem szabad kimenni, csak a zebrán, és csak akkor, ha körülnéztünk!"
+    speech:
+      "Az úttest az autóké. Oda nem megyünk játszani, csak átkeléskor, felnőttel és figyelmesen lépünk."
   },
   {
     id: "autokra-figyelj",
-    title: "Figyelj az autókra!",
-    text: "Mindig figyeld az autókat! Lehet, hogy nem látnak téged.",
+    title: "Figyelj az autókra",
+    text: "Mindig figyeld az autókat. Lehet, hogy nem látnak téged.",
     emoji: "🚙",
     category: "gyalogos",
-    speech: "Mindig figyeld az autókat, mielőtt átmész az úton! Az autók néha gyorsan jönnek, és nem mindig látnak bennünket."
+    speech:
+      "Mindig figyeld az autókat, mielőtt átmész az úton. Az autók néha gyorsan jönnek, és nem mindig látnak bennünket."
   },
   {
     id: "labda-utca",
-    title: "Ne szaladj a labda után!",
-    text: "Ha kigurul a labdád az útra, soha ne szaladj utána!",
+    title: "Ne szaladj a labda után",
+    text: "Ha kigurul a labdád az útra, állj meg, és kérj felnőtt segítséget.",
     emoji: "⚽",
     category: "gyalogos",
-    speech: "Ha kigurul a labdád az útra, soha ne szaladj utána! Kérj segítséget egy felnőttől. A labdánál fontosabb vagy te!"
+    speech:
+      "Ha kigurul a labdád az útra, soha ne szaladj utána. Állj meg biztonságos helyen, és kérj segítséget egy felnőttől."
   },
 
-  // ─── TÁBLÁK ──────────────────────────────────────────────────────────
   {
     id: "stop-tabla",
     title: "STOP tábla",
-    text: "A piros nyolcszögű STOP tábla azt jelenti: TELJESEN meg kell állni!",
+    text: "A piros nyolcszögű STOP tábla azt jelenti: teljesen meg kell állni.",
     signId: "stop_elsobbsegadas_kotelezo",
     category: "tablak",
-    speech: "A STOP tábla azt jelenti, hogy teljesen meg kell állni! Nem elég lassítani – teljesen meg kell állni, és csak akkor mehetünk tovább, ha szabad."
+    speech:
+      "A STOP tábla azt jelenti, hogy teljesen meg kell állni. Nem elég lassítani, teljesen meg kell állni, és csak akkor mehetünk tovább, ha szabad."
   },
   {
     id: "gyalogos-tabla",
     title: "Gyalogos átkelő tábla",
-    text: "A kék négyzetes tábla fehér gyalogossal jelzi: itt van zebra!",
+    text: "A kék tábla fehér gyalogossal jelzi: itt van zebra.",
     signId: "gyalogos_atkelohely",
     category: "tablak",
-    speech: "A kék négyzetes tábla, amiben egy gyalogos látható, a gyalogos átkelőhelyet jelzi! Ott szabad az úton átkelni."
+    speech:
+      "A kék tábla, amiben egy gyalogos látható, a gyalogos átkelőhelyet jelzi. Ott szabad az úton átkelni, körülnézés után."
   },
   {
     id: "behajtani-tilos-tabla",
     title: "Behajtani tilos tábla",
-    text: "A piros körben fehér sáv azt jelenti: NEM szabad bemenni!",
+    text: "A piros körben fehér sáv azt jelenti: ebből az irányból nem szabad bemenni.",
     signId: "behajtani_tilos",
     category: "tablak",
-    speech: "A behajtani tilos tábla piros körben fehér vízszintes sávot mutat. Ez azt jelenti, hogy erre nem szabad bemenni!"
+    speech:
+      "A behajtani tilos tábla piros körben fehér vízszintes sávot mutat. Ez azt jelenti, hogy erre nem szabad bemenni."
   },
   {
     id: "kerekparut-tabla",
     title: "Kerékpárút tábla",
-    text: "A kék körös, fehér biciklis tábla: csak kerékpárosoknak!",
+    text: "A kék körös, fehér biciklis tábla kerékpárutat jelez.",
     signId: "kerekparut",
     category: "tablak",
-    speech: "A kék kör közepén fehér bicikli jelzi a kerékpárutat. Ott csak kerékpárosok mehetnek!"
+    speech:
+      "A kék kör közepén fehér bicikli jelzi a kerékpárutat. Biciklivel ott biztonságosabb haladni."
   },
   {
     id: "veszelyt-jelzo-tabla",
     title: "Veszélyt jelző tábla",
-    text: "A sárga háromszög piros szegéllyel mindig veszélyre figyelmeztet!",
+    text: "A sárga háromszög piros szegéllyel mindig óvatosságra figyelmeztet.",
     signId: "egyeb_veszely",
     category: "tablak",
-    speech: "A sárga háromszög alakú tábla piros szegéllyel mindig veszélyre figyelmeztet! Ha ilyet látsz, légy óvatos!"
+    speech:
+      "A sárga háromszög alakú tábla piros szegéllyel mindig veszélyre figyelmeztet. Ha ilyet látsz, légy óvatos."
   },
   {
     id: "elsobbsegadas-tabla",
     title: "Elsőbbségadás tábla",
-    text: "A fehér, csúcsával lefelé mutató háromszög: engedd előre a másikat!",
+    text: "A fehér, lefelé mutató háromszög azt jelenti: engedd előre a másikat.",
     signId: "elsobbsegadas_kotelezo",
     category: "tablak",
-    speech: "Az elsőbbségadás kötelező tábla fehér háromszög csúcsával lefelé, piros szegéllyel. Ez azt jelenti, hogy engedni kell a másiknak!"
+    speech:
+      "Az elsőbbségadás kötelező tábla fehér háromszög csúcsával lefelé, piros szegéllyel. Ez azt jelenti, hogy engedni kell a másiknak."
   },
 
-  // ─── VÉDŐFELSZERELÉSEK ────────────────────────────────────────────────
   {
     id: "lathatosagi-melleny",
     title: "Láthatósági mellény",
-    text: "A sárga mellény segít, hogy az autósok jól lássanak téged!",
+    text: "A sárga mellény segít, hogy az autósok jól lássanak téged.",
     emoji: "🦺",
     category: "felszereles",
-    speech: "A láthatósági mellény segít, hogy az autósok jól lássanak téged, különösen sötétben vagy szürkületi időben!"
+    speech:
+      "A láthatósági mellény segít, hogy az autósok jól lássanak téged, különösen sötétben vagy szürkületi időben."
   },
   {
     id: "bukosisak",
     title: "Bukósisak",
-    text: "Biciklizéshez és rollerezéshez MINDIG vedd fel a sisakot!",
+    text: "Biciklizéshez és rollerezéshez mindig vedd fel a sisakot.",
     emoji: "⛑️",
     category: "felszereles",
-    speech: "Biciklizéshez és rollerezéshez mindig vedd fel a bukósisakot! Ez védi a fejedet, ha esetleg elessz."
+    speech:
+      "Biciklizéshez és rollerezéshez mindig vedd fel a bukósisakot. Ez védi a fejedet, ha esetleg elesel."
   },
   {
     id: "roller-bicikli",
     title: "Roller és bicikli",
-    text: "Rollerrel és biciklivel LASSAN, óvatosan közlekedj!",
+    text: "Rollerrel és biciklivel lassan, óvatosan közlekedj.",
     emoji: "🛴",
     category: "felszereles",
-    speech: "Rollerrel és biciklivel mindig óvatosan, lassan közlekedj, és viseld a sisakot! A kerékpárúton tartsd be a szabályokat."
+    speech:
+      "Rollerrel és biciklivel mindig óvatosan, lassan közlekedj, és viseld a sisakot. A kerékpárúton is figyelj másokra."
   },
 
-  // ─── HELYSZÍNEK ───────────────────────────────────────────────────────
   {
     id: "buszmegallo",
     title: "Buszmegálló",
-    text: "A buszmegállóban csendben, sorban várj! Ne szaladgálj!",
+    text: "A buszmegállóban csendben, sorban várj. Ne menj az úttestre.",
     signId: "autobusz_megallohely",
     category: "helyszinek",
-    speech: "A buszmegállóban csendben, sorban várakozz, ne szaladgálj, és ne menj ki az úttestre! Ott buszok és autók közlekednek."
+    speech:
+      "A buszmegállóban csendben, sorban várakozz, ne szaladgálj, és ne menj ki az úttestre. Ott buszok és autók közlekednek."
   },
   {
     id: "vasuti-atjaro",
     title: "Vasúti átjáró",
-    text: "Vasúti átjárónál MINDIG állj meg és nézz körül! Vonat jöhet!",
+    text: "Vasúti átjárónál mindig állj meg, nézz körül, és figyelj. Vonat jöhet.",
     signId: "vasuti_atjaro",
     category: "helyszinek",
-    speech: "A vasúti átjárónál mindig meg kell állni és körülnézni! A vonat gyors és nehéz, és nem tud hirtelen megállni."
+    speech:
+      "A vasúti átjárónál mindig meg kell állni, körülnézni és hallgatózni. A vonat gyors és nehéz, és nem tud hirtelen megállni."
   },
 
-  // ─── VESZÉLYEK ────────────────────────────────────────────────────────
   {
     id: "veszelyes-helyek",
     title: "Veszélyes helyek",
-    text: "Parkoló, úttest, vasúti sín – ezeken soha ne játssz!",
+    text: "Parkoló, úttest, vasúti sín: ezeken soha ne játssz.",
     emoji: "🚫",
     category: "veszelyek",
-    speech: "A parkoló, az úttest és a vasúti sín nagyon veszélyes helyek! Ezeken soha ne játsszon a gyerek."
+    speech:
+      "A parkoló, az úttest és a vasúti sín veszélyes helyek. Ezeken soha ne játsszon a gyerek."
   },
   {
-    id: "idegen-auto",
-    title: "Idegen autó",
-    text: "Ha egy idegen autó megáll melletted, ne menj oda! Fuss el!",
-    emoji: "🚨",
+    id: "megkulonbozteto-jelzes",
+    title: "Ha szirénát hallunk",
+    text: "Megállunk, figyelünk, és hagyjuk elmenni a mentőt, rendőrt vagy tűzoltót.",
+    emoji: "🚑",
     category: "veszelyek",
-    speech: "Ha egy idegen autó megáll melletted és kínál valamit, ne menj oda! Gyorsan menj el és szólj egy felnőttnek!"
+    speech:
+      "Ha mentőt, rendőrautót vagy tűzoltót látsz villogó kék fénnyel és szirénával, állj meg biztonságos helyen, figyelj a felnőttre, ne lépj le az úttestre, és várd meg, amíg elhalad.",
+    adultExplanation:
+      "A megkülönböztető jelzést használó járművek számára elsőbbséget kell biztosítani. Óvodás gyermeknél a biztonságos megállás, a felnőtt követése és az úttestre lépés kerülése a fő üzenet."
   }
 ];
 

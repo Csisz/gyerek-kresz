@@ -10,11 +10,63 @@ import { useLocalProfile } from "@/hooks/useLocalProfile";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 
+function CarTrafficLight({ lights }) {
+  const isOn = (color) => lights.includes(color);
+  return (
+    <div className="w-16 rounded-2xl bg-slate-800 p-2 shadow-lg flex flex-col gap-2">
+      <div className={`h-10 w-10 rounded-full ${isOn("red") ? "bg-red-500 shadow-red-300 shadow-lg" : "bg-slate-600"}`} />
+      <div className={`h-10 w-10 rounded-full ${isOn("yellow") ? "bg-yellow-300 shadow-yellow-200 shadow-lg" : "bg-slate-600"}`} />
+      <div className={`h-10 w-10 rounded-full ${isOn("green") ? "bg-green-500 shadow-green-300 shadow-lg" : "bg-slate-600"}`} />
+    </div>
+  );
+}
+
+function PedestrianLight({ state }) {
+  const isRed = state === "red";
+  const isGreen = state === "green" || state === "flashing-green";
+
+  return (
+    <div className="w-16 rounded-2xl bg-slate-800 p-2 shadow-lg flex flex-col gap-2">
+      <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${isRed ? "bg-red-500" : "bg-slate-600 text-slate-400"}`}>
+        🚶
+      </div>
+      <div className={`h-12 w-12 rounded-xl flex items-center justify-center text-2xl ${isGreen ? "bg-green-500 text-white" : "bg-slate-600 text-slate-400"} ${state === "flashing-green" ? "animate-pulse" : ""}`}>
+        🚶
+      </div>
+    </div>
+  );
+}
+
+function TrafficLightSequence({ lesson }) {
+  if (!lesson?.sequence) return null;
+
+  return (
+    <div className="mt-4 grid gap-3">
+      {lesson.sequence.map((step, index) => (
+        <div key={step.id} className="flex items-center gap-3 rounded-2xl bg-primary/5 p-3 text-left">
+          <div className="flex-shrink-0">
+            {lesson.trafficLightType === "car" ? (
+              <CarTrafficLight lights={step.lights || []} />
+            ) : (
+              <PedestrianLight state={step.state} />
+            )}
+          </div>
+          <div>
+            <p className="text-sm font-black text-primary">{index + 1}. {step.label}</p>
+            <p className="text-base font-bold leading-tight">{step.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function Learn() {
   const { profile, completeLesson, addStars, addBadge } = useLocalProfile();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showAdult, setShowAdult] = useState(false);
 
   const filteredLessons = selectedCategory
     ? lessons.filter(l => l.category === selectedCategory)
@@ -41,10 +93,16 @@ export default function Learn() {
   };
 
   const goNext = () => {
-    if (currentIndex < filteredLessons.length - 1) setCurrentIndex(currentIndex + 1);
+    if (currentIndex < filteredLessons.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setShowAdult(false);
+    }
   };
   const goPrev = () => {
-    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      setShowAdult(false);
+    }
   };
 
   if (!selectedCategory) {
@@ -118,6 +176,8 @@ export default function Learn() {
                   <div className="flex justify-center">
                     <KreszSignPlaceholder sign={currentSign} size="xlarge" showName={false} />
                   </div>
+                ) : currentLesson.sequence ? (
+                  <TrafficLightSequence lesson={currentLesson} />
                 ) : (
                   <motion.span
                     className="text-8xl inline-block"
@@ -131,6 +191,24 @@ export default function Learn() {
                 <p className="text-lg font-semibold text-muted-foreground mt-2">
                   {currentLesson.text}
                 </p>
+                {currentLesson.adultExplanation && (
+                  <div className="mt-3">
+                    <button
+                      type="button"
+                      onClick={() => setShowAdult(!showAdult)}
+                      className="text-xs font-bold text-muted-foreground underline"
+                    >
+                      {showAdult ? "Gyerek nézet" : "Szülői/óvónői magyarázat"}
+                    </button>
+                    {showAdult && (
+                      <div className="mt-2 rounded-2xl bg-muted/40 p-3 text-left">
+                        <p className="text-sm font-medium text-muted-foreground">
+                          {currentLesson.adultExplanation}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
                 <div className="mt-6 flex flex-col gap-3 items-center">
                   <SpeakButton text={currentLesson.speech} />
                   {!profile.completed_lessons.includes(currentLesson.id) ? (

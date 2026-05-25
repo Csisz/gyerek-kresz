@@ -35,18 +35,18 @@ export const questions = [
   },
   {
     id: "q3",
-    text: "Mit jelent a sárga lámpa?",
-    speech: "Mit jelent a sárga lámpa a közlekedésben?",
+    text: "Mit jelent a sárga autós lámpa?",
+    speech: "Mit jelent a sárga autós jelzőlámpa?",
     category: "jelzolampak",
     emoji: "🟡",
     signImage: null,
     options: [
-      { text: "Készülök, mindjárt vált", emoji: "⏳", correct: true },
+      { text: "Megállunk, ha biztonságosan tudunk", emoji: "✋", correct: true },
       { text: "Szaladok gyorsan", emoji: "🏃", correct: false },
       { text: "Biciklizek tovább", emoji: "🚲", correct: false }
     ],
-    explanation: "Így van! Sárga lámpánál felkészülünk, hogy mindjárt változik a lámpa!",
-    wrongExplanation: "Sárga lámpánál felkészülünk – ez azt jelenti, hogy hamarosan vált a jelzés!"
+    explanation: "Így van! Sárga autós lámpánál megállunk, ha ezt biztonságosan meg tudjuk tenni.",
+    wrongExplanation: "Sárga autós lámpánál nem gyorsítunk. Megállunk, ha biztonságosan meg tudunk állni."
   },
   {
     id: "q4",
@@ -330,18 +330,18 @@ export const questions = [
   // ─── HELYZETEK / VESZÉLYEK ────────────────────────────────────────────
   {
     id: "q22",
-    text: "Mit teszel, ha egy idegen autó megáll melletted és kínál valamit?",
-    speech: "Mit teszel, ha egy idegen autó megáll melletted és kínál valamit?",
+    text: "Mit teszel, ha szirénázó járművet hallasz?",
+    speech: "Mit teszel, ha mentőt, rendőrautót vagy tűzoltót hallasz szirénázni?",
     category: "veszelyek",
-    emoji: "🚨",
+    emoji: "🚑",
     signImage: null,
     options: [
-      { text: "Gyorsan elmegyek és felnőttnek szólok", emoji: "🏃", correct: true },
-      { text: "Megnézem, mi van az autóban", emoji: "👀", correct: false },
-      { text: "Elveszem, amit kínálnak", emoji: "🍬", correct: false }
+      { text: "Megállok biztonságos helyen és figyelek", emoji: "✋", correct: true },
+      { text: "Lelépek az úttestre megnézni", emoji: "🚫", correct: false },
+      { text: "Futni kezdek a hang felé", emoji: "🏃", correct: false }
     ],
-    explanation: "Nagyon helyes! Soha ne állj meg idegen autónál – gyorsan menj el és szólj felnőttnek!",
-    wrongExplanation: "Ha ismeretlen autó áll meg melletted, gyorsan menj el és szólj felnőttnek! Ez nagyon fontos!"
+    explanation: "Ügyes vagy! Megállunk, figyelünk a felnőttre, és hagyjuk elhaladni.",
+    wrongExplanation: "Ha szirénát hallunk, nem lépünk le az úttestre. Megállunk biztonságos helyen, és figyelünk."
   },
   {
     id: "q23",
@@ -646,7 +646,7 @@ export const questions = [
     options: [
       { text: "Maradok egy helyen és szólok egy megbízható felnőttnek", emoji: "🙋", correct: true },
       { text: "Rohangálok és kiabálok az úttesten", emoji: "😱", correct: false },
-      { text: "Bemegyek egy idegen autóba", emoji: "🚗", correct: false }
+      { text: "Elindulok egyedül keresgélni", emoji: "🚶", correct: false }
     ],
     explanation: "Nagyon okos! Ha elveszünk, álljunk meg és kérjünk segítséget egy biztonságos helyen!",
     wrongExplanation: "Ha elvesztél: maradj nyugodt, menj egy biztonságos helyre (pl. bolt, rendőr) és kérj segítséget!"
