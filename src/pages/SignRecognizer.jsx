@@ -4,7 +4,7 @@ import ChildNavbar from "../components/ChildNavbar";
 import SpeakButton from "../components/SpeakButton";
 import SuccessAnimation from "../components/SuccessAnimation";
 import KreszSignPlaceholder from "../components/KreszSignPlaceholder";
-import { getOvodaSigns, getSignsByCategory, kreszSigns, signCategories } from "@/data/kreszSigns";
+import { getOvodaSigns, getSignsByCategory, signCategories } from "@/data/kreszSigns";
 import { useLocalProfile } from "@/hooks/useLocalProfile";
 import { Button } from "@/components/ui/button";
 import { speak } from "@/utils/speech";
@@ -134,7 +134,9 @@ export default function SignRecognizer() {
   // ── CATEGORIES MODE ───────────────────────────────────────────────────
   if (mode === "categories") {
     if (selectedCategory) {
-      const catSigns = getSignsByCategory(selectedCategory);
+      const catSigns = getSignsByCategory(selectedCategory).filter(
+        (sign) => sign.ovodas === true || sign.importance === "high"
+      );
       const catInfo = signCategories.find(c => c.id === selectedCategory);
       return (
         <div className="min-h-screen bg-background">
@@ -172,7 +174,7 @@ export default function SignRecognizer() {
           <Button variant="ghost" onClick={() => setMode(null)} className="mb-4 font-bold">← Vissza</Button>
           <div className="grid gap-3">
             {signCategories.map((cat, i) => {
-              const count = kreszSigns.filter(s => s.category === cat.id).length;
+              const count = learnSigns.filter(s => s.category === cat.id).length;
               return (
                 <motion.button
                   key={cat.id}

@@ -17,9 +17,9 @@ const categoryStyles = {
 
 const shapeIcon = {
   octagon: "STOP",
-  "triangle-down": "▽",
-  triangle: "△",
-  circle: "○",
+  "triangle-down": "YIELD",
+  triangle: "!",
+  circle: "O",
   square: "□",
   rectangle: "▭",
   cross: "X"
@@ -34,7 +34,7 @@ function MissingSignFallback({ sign, size }) {
       className={`${sz.box} ${colorClass} rounded-2xl border-4 border-dashed shadow-sm flex flex-col items-center justify-center text-center p-2`}
       aria-label={`${sign?.name || "KRESZ tábla"} képe hamarosan`}
     >
-      <span className={`${sz.icon} font-black leading-none`}>{shapeIcon[sign?.shape] || "🪧"}</span>
+      <span className={`${sz.icon} font-black leading-none`}>{shapeIcon[sign?.shape] || "?"}</span>
       <span className={`${sz.note} font-black leading-tight mt-2`}>Tábla képe hamarosan</span>
     </div>
   );
@@ -58,8 +58,11 @@ export default function KreszSignPlaceholder({ sign, size = "large", showName = 
         <div className={`${sz.box} flex items-center justify-center`}>
           <img
             src={sign.image}
-            alt={sign.name}
+            alt={`${sign.name} közlekedési tábla`}
             className="w-full h-full object-contain drop-shadow-sm"
+            loading="lazy"
+            decoding="async"
+            draggable="false"
             onError={() => setImageFailed(true)}
           />
         </div>

@@ -163,7 +163,7 @@ export const questions = [
     speech: "Melyik tábla jelzi a gyalogos átkelőhelyet, vagyis a zebrát?",
     category: "tablak",
     emoji: "🪧",
-    signId: "gyalogos-atkelohely",
+    signId: "gyalogos_atkelohely",
     options: [
       { text: "Kék tábla fehér gyalogossal", emoji: "🚶", correct: true },
       { text: "Piros kör fehér sávval", emoji: "⛔", correct: false },
@@ -178,7 +178,7 @@ export const questions = [
     speech: "Mit jelent a STOP tábla?",
     category: "tablak",
     emoji: "🛑",
-    signId: "stop",
+    signId: "stop_elsobbsegadas_kotelezo",
     options: [
       { text: "Teljesen meg kell állni!", emoji: "✋", correct: true },
       { text: "Lassabban kell menni", emoji: "🐌", correct: false },
@@ -193,7 +193,7 @@ export const questions = [
     speech: "Melyik tábla jelenti azt, hogy erre nem szabad bemenni?",
     category: "tablak",
     emoji: "🪧",
-    signId: "behajtani-tilos",
+    signId: "behajtani_tilos",
     options: [
       { text: "Behajtani tilos (piros kör, fehér sáv)", emoji: "⛔", correct: true },
       { text: "Gyalogos átkelőhely (kék, gyalogos)", emoji: "🚶", correct: false },
@@ -223,7 +223,7 @@ export const questions = [
     speech: "Mit jelez a sárga háromszög alakú piros keretes tábla?",
     category: "tablak",
     emoji: "⚠️",
-    signId: "egyeb-veszely",
+    signId: "egyeb_veszely",
     options: [
       { text: "Veszélyre figyelmeztet", emoji: "⚠️", correct: true },
       { text: "Gyorsítani kell", emoji: "💨", correct: false },
@@ -302,7 +302,7 @@ export const questions = [
     speech: "Hol várakozunk a buszra?",
     category: "helyszinek",
     emoji: "🚌",
-    signId: "buszmegallo",
+    signId: "autobusz_megallohely",
     options: [
       { text: "A buszmegállóban, a peron mögött", emoji: "🚏", correct: true },
       { text: "Az úttesten, az autók között", emoji: "🛣️", correct: false },
@@ -426,7 +426,7 @@ export const questions = [
     speech: "Miért fontos megállni a STOP vonalnál?",
     category: "tablak",
     emoji: "🛑",
-    signId: "stop",
+    signId: "stop_elsobbsegadas_kotelezo",
     options: [
       { text: "Mert más autóknak elsőbbségük van", emoji: "🚗", correct: true },
       { text: "Mert pihenni kell", emoji: "😴", correct: false },
@@ -441,7 +441,7 @@ export const questions = [
     speech: "Melyik tábla figyelmeztet, hogy vonat jár erre?",
     category: "tablak",
     emoji: "🚂",
-    signId: "vasuti-atjaro",
+    signId: "vasuti_atjaro",
     options: [
       { text: "A piros X tábla (András-kereszt)", emoji: "❌", correct: true },
       { text: "A piros háromszög", emoji: "⚠️", correct: false },
@@ -473,7 +473,7 @@ export const questions = [
     speech: "Melyik tábla jelenti azt, hogy engedd előre a másikat?",
     category: "tablak",
     emoji: "🔻",
-    signId: "elsobbsegadas",
+    signId: "elsobbsegadas_kotelezo",
     options: [
       { text: "Fehér csúcsával lefelé mutató háromszög piros szegéllyel", emoji: "🔻", correct: true },
       { text: "Piros nyolcszög STOP felirattal", emoji: "🛑", correct: false },
@@ -580,7 +580,7 @@ export const questions = [
     speech: "Vasúti átjárón átkelés előtt mit kell tenni?",
     category: "tablak",
     emoji: "🚂",
-    signId: "vasuti-atjaro",
+    signId: "vasuti_atjaro",
     options: [
       { text: "Megállok, körülnézek, meghallgatom, jön-e vonat", emoji: "👂", correct: true },
       { text: "Gyorsan átfutok, hogy ne érjen a vonat", emoji: "💨", correct: false },
@@ -657,7 +657,7 @@ export const questions = [
     speech: "Melyik tábla figyelmeztet arra, hogy gyermekek közlekednek ezen a területen?",
     category: "tablak",
     emoji: "👧",
-    signId: "gyermekek-veszely",
+    signId: "gyermekek",
     options: [
       { text: "Sárga háromszög gyermek alakkal", emoji: "⚠️", correct: true },
       { text: "Kék kör gyalogos alakkal", emoji: "🔵", correct: false },
@@ -702,7 +702,7 @@ export const questions = [
     speech: "Mit jelent a lakott terület kezdete tábla az autósoknak?",
     category: "tablak",
     emoji: "🏘️",
-    signId: "lakott-terulet-kezdete",
+    signId: "lakott_terulet_kezdete",
     options: [
       { text: "Lassítani kell, maximum 50 km/h a sebesség", emoji: "🐌", correct: true },
       { text: "Gyorsítani lehet", emoji: "💨", correct: false },
@@ -717,7 +717,7 @@ export const questions = [
     speech: "Mi az andráskereszt és hol látjuk?",
     category: "tablak",
     emoji: "❌",
-    signId: "vasuti-atjaro",
+    signId: "vasuti_atjaro",
     options: [
       { text: "Piros X tábla a vasúti átjárónál", emoji: "❌", correct: true },
       { text: "Fehér plusz jel az egészségügynél", emoji: "➕", correct: false },
@@ -747,7 +747,7 @@ export const questions = [
     speech: "Mit jelent a gyalog és kerékpárút tábla?",
     category: "tablak",
     emoji: "🚶🚲",
-    signId: "gyalog-kerekparut",
+    signId: "gyalog_es_kerekparut",
     options: [
       { text: "Gyalogosok és biciklisek is használhatják", emoji: "✅", correct: true },
       { text: "Csak bicikliseknek van", emoji: "🚲", correct: false },

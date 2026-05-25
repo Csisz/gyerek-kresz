@@ -91,7 +91,7 @@ export const lessons = [
     id: "stop-tabla",
     title: "STOP tábla",
     text: "A piros nyolcszögű STOP tábla azt jelenti: TELJESEN meg kell állni!",
-    signId: "stop",
+    signId: "stop_elsobbsegadas_kotelezo",
     category: "tablak",
     speech: "A STOP tábla azt jelenti, hogy teljesen meg kell állni! Nem elég lassítani – teljesen meg kell állni, és csak akkor mehetünk tovább, ha szabad."
   },
@@ -99,7 +99,7 @@ export const lessons = [
     id: "gyalogos-tabla",
     title: "Gyalogos átkelő tábla",
     text: "A kék négyzetes tábla fehér gyalogossal jelzi: itt van zebra!",
-    signId: "gyalogos-atkelohely",
+    signId: "gyalogos_atkelohely",
     category: "tablak",
     speech: "A kék négyzetes tábla, amiben egy gyalogos látható, a gyalogos átkelőhelyet jelzi! Ott szabad az úton átkelni."
   },
@@ -107,7 +107,7 @@ export const lessons = [
     id: "behajtani-tilos-tabla",
     title: "Behajtani tilos tábla",
     text: "A piros körben fehér sáv azt jelenti: NEM szabad bemenni!",
-    signId: "behajtani-tilos",
+    signId: "behajtani_tilos",
     category: "tablak",
     speech: "A behajtani tilos tábla piros körben fehér vízszintes sávot mutat. Ez azt jelenti, hogy erre nem szabad bemenni!"
   },
@@ -123,7 +123,7 @@ export const lessons = [
     id: "veszelyt-jelzo-tabla",
     title: "Veszélyt jelző tábla",
     text: "A sárga háromszög piros szegéllyel mindig veszélyre figyelmeztet!",
-    signId: "egyeb-veszely",
+    signId: "egyeb_veszely",
     category: "tablak",
     speech: "A sárga háromszög alakú tábla piros szegéllyel mindig veszélyre figyelmeztet! Ha ilyet látsz, légy óvatos!"
   },
@@ -131,7 +131,7 @@ export const lessons = [
     id: "elsobbsegadas-tabla",
     title: "Elsőbbségadás tábla",
     text: "A fehér, csúcsával lefelé mutató háromszög: engedd előre a másikat!",
-    signId: "elsobbsegadas",
+    signId: "elsobbsegadas_kotelezo",
     category: "tablak",
     speech: "Az elsőbbségadás kötelező tábla fehér háromszög csúcsával lefelé, piros szegéllyel. Ez azt jelenti, hogy engedni kell a másiknak!"
   },
@@ -167,7 +167,7 @@ export const lessons = [
     id: "buszmegallo",
     title: "Buszmegálló",
     text: "A buszmegállóban csendben, sorban várj! Ne szaladgálj!",
-    emoji: "🚌",
+    signId: "autobusz_megallohely",
     category: "helyszinek",
     speech: "A buszmegállóban csendben, sorban várakozz, ne szaladgálj, és ne menj ki az úttestre! Ott buszok és autók közlekednek."
   },
@@ -175,7 +175,7 @@ export const lessons = [
     id: "vasuti-atjaro",
     title: "Vasúti átjáró",
     text: "Vasúti átjárónál MINDIG állj meg és nézz körül! Vonat jöhet!",
-    emoji: "🚂",
+    signId: "vasuti_atjaro",
     category: "helyszinek",
     speech: "A vasúti átjárónál mindig meg kell állni és körülnézni! A vonat gyors és nehéz, és nem tud hirtelen megállni."
   },

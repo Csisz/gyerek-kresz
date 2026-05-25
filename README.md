@@ -37,3 +37,12 @@ public/signs/
 ```
 
 Ha egy kép hiányzik, az app gyerekbarát "Tábla képe hamarosan" helyettesítőt mutat. A várt fájlnevek és licencjegyzetek listája: `docs/SIGN_ASSETS.md`.
+
+Wikimedia/Wikipedia alapú importhoz:
+
+```bash
+npm run import:signs
+npm run check:signs
+```
+
+A közlekedési táblaképek forrását és licencét minden egyes fájlnál külön ellenőrizni és dokumentálni kell. A Wikipédia/Wikimedia oldalról származó képek nem automatikusan azonos licencűek.
