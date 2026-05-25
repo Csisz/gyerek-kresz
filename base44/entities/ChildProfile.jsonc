@@ -1,0 +1,126 @@
+{
+  "name": "ChildProfile",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Gyermek neve"
+    },
+    "age": {
+      "type": "number",
+      "description": "Gyermek \u00e9letkora"
+    },
+    "avatar": {
+      "type": "string",
+      "description": "Kiv\u00e1lasztott avatar emoji"
+    },
+    "stars": {
+      "type": "number",
+      "default": 0,
+      "description": "\u00d6sszegy\u0171jt\u00f6tt csillagok"
+    },
+    "badges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Megszerzett jelv\u00e9nyek azonos\u00edt\u00f3i"
+    },
+    "completed_lessons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Teljes\u00edtett leck\u00e9k azonos\u00edt\u00f3i"
+    },
+    "quiz_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "difficulty": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Kv\u00edz eredm\u00e9nyek"
+    },
+    "practice_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "completed": {
+            "type": "boolean"
+          },
+          "score": {
+            "type": "number"
+          },
+          "date": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Gyakorlati p\u00e1lya eredm\u00e9nyek"
+    },
+    "competition_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "total_score": {
+            "type": "number"
+          },
+          "max_score": {
+            "type": "number"
+          },
+          "badge": {
+            "type": "string"
+          },
+          "round_scores": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "round": {
+                  "type": "number"
+                },
+                "score": {
+                  "type": "number"
+                },
+                "max": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Verseny eredm\u00e9nyek"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
